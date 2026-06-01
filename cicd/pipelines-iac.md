@@ -1,28 +1,31 @@
-# Pipelines and IaC Integration
+# Pipelines & IaC Integration — Concise Notes
 
-What it is
+Summary
 
-Integrating CI/CD pipelines with IaC tools like Terraform to automate infrastructure changes alongside application releases.
-
-Why it is used
-
-To ensure infrastructure changes are reviewed, tested, and applied consistently.
+How to safely run infrastructure IaC (Terraform) inside CI pipelines with plan/apply separation and approvals.
 
 Key concepts
 
-- Pipeline stages (plan, apply)
-- Secure handling of secrets and state
+- Pipeline stages: plan (preview), review/approval, apply (execution).
+- Remote state locking and secure credentials for CI.
+- Use ephemeral service accounts with limited permissions.
 
-Practical examples
+Commands / Patterns
 
-- Run `terraform plan` in CI and require manual approval before `apply` in production
+- Run `terraform plan -out=tfplan && terraform show -json tfplan` in CI
+- Require manual approval before `terraform apply tfplan` on prod.
 
-Common interview questions
+Interview questions
 
-- How do you prevent accidental terraform apply in production from CI?
+- How do you prevent accidental infra changes via CI?
+- How do you test Terraform code before applying to prod?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Ensure service account has correct permissions
-- Store state remotely and lock during CI runs
+- "State locked by another run": inspect locks in the backend (DynamoDB) and running jobs.
+- "CI apply failed": ensure the CI role has required permissions and environment variables.
 
+Related topics
+
+- Terraform remote state: ../terraform/terraform-aws-pattern.md
+- CI/CD workflows: ../projects/cicd-pipeline/README.md

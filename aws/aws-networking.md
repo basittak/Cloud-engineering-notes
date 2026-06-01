@@ -1,33 +1,36 @@
-# AWS Networking
+# AWS Networking — Concise Notes
 
-What it is
+Summary
 
-Designing VPCs, subnets, routing, NAT gateways, and VPN/Direct Connect.
-
-Why it is used
-
-To control network isolation, routing, and secure connectivity in AWS.
+Design and components of AWS VPC networking: CIDR planning, subnets, routing, IGW/NAT, and peering.
 
 Key concepts
 
-- VPC CIDR, public vs private subnets
-- Internet Gateway vs NAT Gateway
-- Route tables and peering
+- VPC CIDR and subnetting across AZs for HA.
+- Public vs private subnets, Internet Gateway (IGW) and NAT Gateway.
+- Route tables, NACLs, and security groups.
+- VPC peering, Transit Gateway, and Direct Connect.
 
 Commands
 
 - aws ec2 describe-vpcs
+- aws ec2 describe-route-tables
 
-Practical examples
+Examples
 
-- Create a VPC with public/private subnets using AWS Console or Terraform
+- Typical web-tier: public subnet for ALB, private subnets for app and DB with NAT for outbound updates.
 
-Common interview questions
+Interview questions
 
-- Design a multi-AZ VPC for a web application.
+- How would you design a multi-AZ VPC for a three-tier app?
+- When to use a NAT Gateway vs NAT instance?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Confirm route tables and security groups
-- Check subnet auto-assign public IP settings
+- "No internet from instance": check route table, IGW, and public IP assignment.
+- "Cannot reach RDS": verify security groups and subnet group.
 
+Related topics
+
+- Networking basics: ../networking/networking-basics.md
+- Terraform AWS networking modules: ../terraform/terraform-aws-pattern.md

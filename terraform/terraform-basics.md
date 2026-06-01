@@ -1,37 +1,38 @@
-# Terraform Basics
+# Terraform Basics — Concise Notes
 
-What it is
+Summary
 
-Terraform is an open-source IaC tool for provisioning cloud resources using declarative configuration files.
-
-Why it is used
-
-To version, review, and automate infrastructure provisioning across providers.
+Terraform basics: declarative IaC, providers, resources, state, and modules.
 
 Key concepts
 
-- Providers, resources, modules
-- State files and backends
-- Variables and outputs
+- .tf files declare resources; `terraform plan` previews changes.
+- State file stores current infra mapping; backends (S3 + DynamoDB) recommended.
+- Modules encapsulate reusable configurations.
 
 Commands
 
 - terraform init
+- terraform fmt
 - terraform plan
 - terraform apply
-- terraform fmt
+- terraform destroy
 
-Practical examples
+Examples
 
-- Create an AWS S3 bucket using Terraform
+- Create an S3 bucket resource and output its name (see projects/terraform-aws-infrastructure).
 
-Common interview questions
+Interview questions
 
-- Why is state important and how should it be stored?
-- What are Terraform modules?
+- Why store remote state and how do you lock it?
+- What are Terraform modules and when to use them?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Use `terraform plan` to preview changes
-- If state is corrupted, restore from a backup
+- "State drift": run `terraform plan` to detect differences and reconcile carefully.
+- "Provider version conflicts": pin provider versions in `required_providers`.
 
+Related topics
+
+- AWS infra via Terraform: ../projects/terraform-aws-infrastructure/README.md
+- CI integration: ../cicd/pipelines-iac.md

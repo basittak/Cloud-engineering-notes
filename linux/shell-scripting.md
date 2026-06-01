@@ -1,36 +1,43 @@
-# Shell Scripting
+# Shell Scripting — Concise Notes
 
-What it is
+Summary
 
-Shell scripting automates tasks using bash or other shells.
-
-Why it is used
-
-Automation of repetitive tasks, startup scripts, and CI job steps.
+Bash scripting for automation: variables, control flow, functions, args, and error handling.
 
 Key concepts
 
-- Variables, conditionals, loops
-- Functions and script arguments
-- Exit codes and error handling
+- Shebang, `set -euo pipefail`, and exit codes.
+- Positional parameters ($1, $@) and `getopts` for options parsing.
+- Functions and returning values.
 
-Commands
+Commands / Patterns
 
-- bash script.sh
-- chmod +x script.sh
+- Run: `bash script.sh` or `./script.sh` (with +x)
+- Debug: `set -x` or run with `bash -x script.sh`
 
-Practical examples
+Examples
 
-- Simple backup script using tar
-- Health check script that pings a service
+- Basic backup script:
 
-Common interview questions
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+src=$1
+dest=$2
+tar -czf "$dest" "$src"
+```
 
-- How do you handle errors in bash scripts?
-- Show how to parse arguments with getopts.
+Interview questions
 
-Troubleshooting notes
+- How do you safely handle unset variables in bash?
+- How would you parse flags like `-f` and `-o`?
 
-- Add `set -euo pipefail` to detect errors early
-- Use `set -x` for debugging
+Troubleshooting scenarios
 
+- "Script fails silently": add `set -e` and `set -x` to see commands and failures.
+- "Subprocess errors swallowed": check exit codes and pipefail behavior.
+
+Related topics
+
+- CI scripts & automation: ../cicd/cicd-basics.md
+- Python automation: ../python/python-automation.md

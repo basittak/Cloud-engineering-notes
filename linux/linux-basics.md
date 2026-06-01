@@ -1,42 +1,41 @@
-# Linux Basics
+# Linux Basics — Concise Notes
 
-What it is
+Summary
 
-Linux basics include the command line, file system, users, permissions, and basic administration.
-
-Why it is used
-
-Most cloud servers and container base images run Linux. Understanding it is essential for debugging and automation.
+Core Linux skills for cloud engineers: filesystem, users/permissions, processes, package management, and service control.
 
 Key concepts
 
-- Filesystem layout (/etc, /var, /home, /opt)
-- Users and groups
-- Permissions (rwx, chmod, chown)
-- Processes and signals
-- Package management (apt, yum)
+- Filesystem layout (/, /etc, /var, /home).
+- Users & groups; permissions (rwx) and ownership.
+- Processes and systemd: units, `systemctl`.
+- Logs in /var/log and journalctl.
 
 Commands
 
 - ls, cd, pwd
-- cat, less, tail -f
+- cat / tail / less: `tail -f /var/log/syslog`
 - ps aux, top, htop
-- systemctl status nginx
-- chmod 644 file.txt
-- chown user:group file.txt
+- systemctl status <service>
+- df -h, du -sh <path>
+- chmod/chown: `chmod 644 file`, `chown user:group file`
 
-Practical examples
+Examples
 
-- SSH into a server and inspect logs in /var/log
-- Use `systemctl` to manage services
+- Check disk: `df -h`; find large folders: `du -sh /var/* | sort -h`.
+- Restart a service: `sudo systemctl restart nginx` and view logs: `journalctl -u nginx -f`.
 
-Common interview questions
+Interview questions
 
-- How do file permissions work? Explain u/g/o and rwx.
-- How would you find a process consuming high CPU?
+- Explain Linux file permissions and how to set them.
+- How do you find which process is using a port?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Check disk usage with `df -h` and `du -sh`
-- Review logs in /var/log for service errors
+- "Service won't start": check `systemctl status` and logs in `/var/log`.
+- "Disk full": identify large files with `du` and clear rotated logs.
 
+Related topics
+
+- Shell scripting: ../linux/shell-scripting.md
+- Containers & Docker base images: ../docker/docker-basics.md

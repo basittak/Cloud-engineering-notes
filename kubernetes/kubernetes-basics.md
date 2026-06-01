@@ -1,36 +1,37 @@
-# Kubernetes Basics
+# Kubernetes Basics — Concise Notes
 
-What it is
+Summary
 
-Kubernetes is a container orchestration system for automating deployment, scaling, and management of containerized applications.
-
-Why it is used
-
-To manage complex microservice architectures with declarative APIs.
+Core Kubernetes resources and workflows: Pods, Deployments, Services, ConfigMaps, and Secrets.
 
 Key concepts
 
-- Pods, Deployments, Services
-- ConfigMaps and Secrets
-- Namespaces and RBAC
+- Pod: smallest deployable unit; Deployment manages ReplicaSets for scaling.
+- Service types: ClusterIP, NodePort, LoadBalancer; Ingress for HTTP routing.
+- Namespaces and RBAC for multi-tenant clusters.
 
 Commands
 
 - kubectl get pods
-- kubectl apply -f deployment.yaml
+- kubectl apply -f <manifest>
+- kubectl describe pod <name>
 - kubectl logs <pod>
 
-Practical examples
+Examples
 
-- Deploy a simple nginx application using a Deployment and Service
+- Deploy nginx via Deployment and expose with a ClusterIP Service (see projects/kubernetes-deployment).
 
-Common interview questions
+Interview questions
 
-- Describe the Kubernetes control plane components.
-- How do rolling updates work in Deployments?
+- How does Kubernetes scheduling decide where to place Pods?
+- What is a ConfigMap vs Secret?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Use `kubectl describe` and `kubectl logs` to debug
-- Check events and pod status for scheduling issues
+- "CrashLoopBackOff": `kubectl describe pod` and `kubectl logs` to see startup errors.
+- "Pod not scheduled": check node resources, taints/tolerations, and events.
 
+Related topics
+
+- K8s networking: ../kubernetes/k8s-networking.md
+- Docker images: ../docker/docker-basics.md

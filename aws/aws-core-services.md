@@ -1,19 +1,17 @@
-# AWS Core Services
+# AWS Core Services — Concise Notes
 
-What it is
+Summary
 
-Overview of core AWS services: EC2, S3, IAM, VPC, RDS, Lambda, and CloudFormation.
-
-Why it is used
-
-AWS provides building blocks to run scalable, resilient applications and infrastructure.
+High-level overview of key AWS services used by cloud engineers: EC2, S3, IAM, VPC, RDS, Lambda.
 
 Key concepts
 
-- Regions and Availability Zones
-- IAM policies and roles
-- VPCs, subnets, security groups
-- Object storage (S3) vs block storage (EBS)
+- Regions & AZs for fault isolation and latency.
+- IAM: users, groups, roles, and least-privilege.
+- Compute: EC2 instances, instance types, EBS volumes.
+- Storage: S3 objects (eventual/strong consistency depending on ops), lifecycle rules.
+- Networking: VPC, subnets, IGW, NAT, security groups.
+- Serverless: Lambda, API Gateway, and event-driven patterns.
 
 Commands
 
@@ -21,18 +19,22 @@ Commands
 - aws ec2 describe-instances
 - aws iam get-user
 
-Practical examples
+Examples
 
-- Upload a file to S3: `aws s3 cp file.txt s3://my-bucket/`
-- Launch an EC2 instance with CLI
+- Upload file: `aws s3 cp file.txt s3://my-bucket/`
+- Start instance (CLI): `aws ec2 run-instances --image-id ami-... --count 1 --instance-type t3.micro`
 
-Common interview questions
+Interview questions
 
-- How do security groups differ from network ACLs?
-- Explain IAM policies and roles.
+- Explain security groups vs network ACLs.
+- How does S3 durability and availability work?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Check CloudWatch logs
-- Ensure IAM permissions for the operation
+- "Permissions error": verify IAM policy and role used by the caller.
+- "Instance unreachable": check security groups, route tables, and public IP assignment.
 
+Related topics
+
+- VPC design: ../aws/aws-networking.md
+- Serverless patterns: ../aws/aws-serverless.md

@@ -1,22 +1,24 @@
-# Troubleshooting Guide
+# Troubleshooting Guide — Concise
 
-What it is
+Summary
 
-A concise troubleshooting checklist for common cloud incidents.
-
-Why it is used
-
-To provide quick steps for diagnosing service outages and performance issues.
+A compact checklist and examples to diagnose common cloud incidents quickly.
 
 Checklist
 
-- Reproduce the issue and scope affected components
-- Check logs (CloudWatch, application logs)
-- Check resource limits (CPU, memory, disk)
-- Validate network connectivity and DNS
-- Review recent deployments or config changes
+1. Reproduce and scope: who/what/when is affected?
+2. Check logs: app logs, CloudWatch, journalctl, pod logs.
+3. Resource utilization: CPU, memory, disk (`df -h`, `kubectl top`).
+4. Network & DNS: ping, traceroute, dig.
+5. Recent changes: deployments, config, infra updates.
 
-Practical examples
+Scenarios
 
-- If an EC2 instance fails to boot: check system logs, instance console output, and cloud-init logs.
+- Web app 500 errors: check app logs, health checks, and recent deployments.
+- High latency: check CPU/memory, DB slow queries, and network metrics.
+- Failed deployment: inspect CI logs and rollback if needed.
 
+Related topics
+
+- AWS core: ../aws/aws-core-services.md
+- Kubernetes debugging: ../kubernetes/kubernetes-basics.md

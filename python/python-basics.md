@@ -1,37 +1,43 @@
-# Python Basics
+# Python Basics — Concise Notes
 
-What it is
+Summary
 
-Python is a high-level, interpreted programming language used widely in cloud automation and application development.
-
-Why it is used
-
-Readable syntax, large ecosystem, strong library support for automation and cloud SDKs.
+Python essentials: syntax, virtual environments, package management, and common patterns for scripting and apps.
 
 Key concepts
 
-- Data types, control flow, functions
-- Virtual environments and package management (venv, pip)
-- Modules and packages
+- Data types, functions, modules, and exceptions.
+- Virtual envs (`venv`) and dependency files (`requirements.txt`).
+- Logging vs print, and packaging basics.
 
 Commands
 
 - python -V
 - python -m venv venv
+- source venv/bin/activate
 - pip install -r requirements.txt
 
-Practical examples
+Examples
 
-- Use boto3 to interact with AWS (e.g., upload a file to S3)
-- Build a simple Flask web app
+- Small S3 upload using boto3:
 
-Common interview questions
+```python
+import boto3
+s3 = boto3.client('s3')
+s3.upload_file('local.txt', 'my-bucket', 'remote.txt')
+```
 
-- Explain Python's GIL and when it matters.
-- Differences between list and generator.
+Interview questions
 
-Troubleshooting notes
+- What is the GIL and when does it matter?
+- Differences between lists and generators.
 
-- Check virtual environment activation
-- Use logging and exceptions to diagnose issues
+Troubleshooting scenarios
 
+- "ImportError": check virtualenv activation and `pip freeze`.
+- "Credential errors": verify AWS credentials environment variables or profile.
+
+Related topics
+
+- Python automation with AWS: ../python/python-automation.md
+- Dockerizing Python apps: ../projects/dockerized-application/README_RUN.md

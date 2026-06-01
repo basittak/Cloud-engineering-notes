@@ -1,37 +1,36 @@
-# VPN and Secure Networking
+# VPN & Secure Networking — Concise Notes
 
-What it is
+Summary
 
-VPNs create encrypted tunnels between networks or clients. Secure networking includes encryption, VPNs, and segmentation.
-
-Why it is used
-
-To securely connect remote networks, developers, or microservices and protect data in transit.
+VPNs and secure networking provide encrypted connectivity between networks or clients and cloud resources.
 
 Key concepts
 
-- IPsec vs SSL/TLS VPNs
-- Site-to-site vs client-to-site VPN
-- Subnet isolation and network ACLs
-- Encryption in transit
+- VPN types: site-to-site (network-to-network) and client-to-site (remote user).
+- Protocols: IPsec (common for site-to-site), OpenVPN, TLS-based tunnels.
+- Security controls: network ACLs, security groups, segmentation.
 
 Commands
 
-- ipsec status
-- openvpn --config client.ovpn
+- `ipsec status` (IPsec tools)
+- `openvpn --config client.ovpn` (OpenVPN client)
 
-Practical examples
+Examples
 
-- Set up a site-to-site VPN between on-prem and AWS
-- Use SSH tunnels for secure port forwarding
+- Site-to-site: connect on-prem datacenter to AWS VPC with a VPN gateway.
+- SSH tunnel: `ssh -L 8080:internal.host:80 user@jumpbox` to access internal web UI.
 
-Common interview questions
+Interview questions
 
-- Describe how IPsec works at a high level.
-- When should you use a VPN vs a private link?
+- Explain IPsec at a high level.
+- When would you use a VPN versus a private managed link (e.g., AWS Direct Connect)?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Confirm tunnel endpoints and shared keys
-- Inspect VPN logs on both sides
+- "VPN tunnel down": verify shared keys, local/remote IPs, and logs on both endpoints.
+- "Latency/packet loss": run `mtr` or `traceroute` and check MTU mismatches.
 
+Related topics
+
+- AWS networking: ../aws/aws-networking.md
+- Linux networking tools: ../linux/linux-basics.md

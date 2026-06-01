@@ -1,41 +1,47 @@
-# Git Basics
+# Git Basics — Concise Notes
 
-What it is
+Summary
 
-Git is a distributed version control system used to track code changes.
-
-Why it is used
-
-To manage source code history, collaborate with teams, and enable code reviews.
+Essential Git commands and workflows for collaboration: branching, commits, merges, and recovery.
 
 Key concepts
 
-- Commits, branches, merges
-- Remote repositories (origin)
-- Rebase vs merge
-- Pull requests and code reviews
+- Local vs remote, branches, commits, staging area.
+- Merge strategies and rebase; pull requests for reviews.
+- Recovering with `git reflog`.
 
-Commands
+Common commands
 
-- git init
 - git clone <repo>
+- git status
 - git add .
-- git commit -m "message"
-- git push origin main
-- git checkout -b feature/branch
+- git commit -m "msg"
+- git checkout -b feature
+- git push origin feature
+- git pull --rebase
 
-Practical examples
+Examples
 
-- Create a branch for a feature and open a PR
-- Revert a faulty commit
+- Create feature branch, commit changes, push and open a PR:
 
-Common interview questions
+```
+git checkout -b feature/login
+git add .
+git commit -m "Add login handler"
+git push -u origin feature/login
+```
 
-- Explain the difference between git merge and git rebase.
+Interview questions
+
+- Explain merge vs rebase and when to use each.
 - How do you resolve a merge conflict?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Use `git status` and `git log --graph --oneline` to inspect state
-- Use `git reflog` to recover lost commits
+- "Detached HEAD": check `git branch` and `git checkout <branch>`.
+- "Accidental commit on main": use `git revert` or `git reset` depending on push status.
 
+Related topics
+
+- GitHub Actions CI: ../projects/cicd-pipeline/.github/workflows/ci.yml
+- Collaboration on GitHub: ../git-github/github-collaboration.md

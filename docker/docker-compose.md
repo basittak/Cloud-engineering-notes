@@ -1,32 +1,34 @@
-# Docker Compose
+# Docker Compose — Concise Notes
 
-What it is
+Summary
 
-Docker Compose defines and runs multi-container Docker applications using a YAML file.
-
-Why it is used
-
-Easily manage multi-service setups (e.g., app + db + cache) locally.
+Compose manages multi-container apps via a YAML file describing services, networks, and volumes.
 
 Key concepts
 
-- services, volumes, networks in docker-compose.yml
-- scaling services
+- service definitions, dependency order, named volumes, and networks.
+- `docker-compose up` vs `docker-compose up --build`.
 
 Commands
 
 - docker-compose up -d
 - docker-compose logs -f
+- docker-compose down --volumes
 
-Practical examples
+Examples
 
-- Compose file for a web app and PostgreSQL database
+- Compose a web app + Postgres service for local development.
 
-Common interview questions
+Interview questions
 
-- How do you share data between containers?
+- How do you persist data between container restarts?
+- How to scale a service with Docker Compose?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Inspect service logs and check container health
+- "Service can't connect to DB": check network aliases and environment variables in compose file.
+- "Volume permissions": adjust UID/GID or use `volumes: :cached` options.
 
+Related topics
+
+- Local dev to Kubernetes: ../projects/kubernetes-deployment/README.md

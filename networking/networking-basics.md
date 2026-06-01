@@ -1,46 +1,47 @@
-# Networking Basics
+# Networking Basics — Concise Notes
 
-What it is
+Summary
 
-Networking basics covers how systems communicate over networks: IP addressing, subnets, routing, and DNS.
-
-Why it is used
-
-Networking is fundamental for connecting components and services in cloud and on-prem systems.
+Essential networking concepts for cloud engineers: IP addressing, subnets, routing, DNS, and transport protocols.
 
 Key concepts
 
-- IP addresses (IPv4/IPv6)
-- Subnetting and CIDR notation
-- Routing and gateways
-- DNS (A, CNAME, TXT, etc.)
-- TCP vs UDP
-- Ports and firewalls
+- IP addressing & CIDR: IPv4/IPv6, CIDR notation (e.g., 10.0.0.0/16).
+- Subnetting: dividing CIDR blocks into smaller networks for isolation.
+- Routing: route tables, default gateways, and static vs dynamic routing.
+- DNS: name resolution (A, CNAME, TXT), TTL, propagation.
+- Transport: TCP (reliable) vs UDP (connectionless).
+- Firewalls & security groups: permit/deny by port and protocol.
 
-Commands
+Commands (practice)
 
 - ip addr show
-- ip route
+- ip route show
 - ping 8.8.8.8
-- traceroute google.com
+- traceroute example.com
+- dig example.com +short
 - nslookup example.com
-- dig example.com
 
-Practical examples
+Examples
 
-- Calculate subnets for VPC design
-- Use dig to verify DNS records
-- Trace network path using traceroute
+- Calculate subnets: split 10.0.0.0/24 into four /26 networks.
+- Verify DNS: `dig +short www.example.com`.
+- Trace path: `traceroute github.com`.
 
-Common interview questions
+Interview questions
 
-- Explain CIDR notation and how to split a /24 into /26 networks.
-- What is a NAT gateway and when do you use it?
-- Differences between routing tables and security groups.
+- Explain CIDR and how to split a network.
+- What is the difference between TCP and UDP?
+- How does DNS caching affect record changes?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Check IP configuration with `ip addr`
-- Confirm routes with `ip route`
-- Inspect firewall rules (iptables or cloud security groups)
+- "No network access": check `ip addr`, `ip route`, and firewall rules.
+- "Can't resolve hostname": run `dig`/`nslookup`, verify DNS servers and /etc/resolv.conf.
+- "Packets dropped": use `traceroute` to find the failing hop.
 
+Related topics
+
+- VPC & AWS networking: ../aws/aws-networking.md
+- Kubernetes networking: ../kubernetes/k8s-networking.md
+- Security groups & Linux firewall: ../linux/linux-basics.md

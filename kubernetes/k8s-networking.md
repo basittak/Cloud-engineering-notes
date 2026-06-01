@@ -1,34 +1,35 @@
-# K8s Networking & Services
+# Kubernetes Networking & Services — Concise Notes
 
-What it is
+Summary
 
-Networking in Kubernetes includes Services, Ingress, and CNI plugins that manage pod-to-pod and external traffic.
-
-Why it is used
-
-To expose services, manage routing, and enforce network policies.
+Services, Ingress, and CNI control pod connectivity and external exposure in Kubernetes.
 
 Key concepts
 
-- ClusterIP, NodePort, LoadBalancer
-- Ingress controllers and rules
-- NetworkPolicies
+- Types of Services: ClusterIP (internal), NodePort (port on nodes), LoadBalancer (cloud LB).
+- Ingress and IngressController (Nginx, Traefik) for HTTP routing and TLS termination.
+- NetworkPolicy for enforcing pod-level networking rules.
 
 Commands
 
-- kubectl get svc
+- kubectl get svc, kubectl get ingress
 - kubectl apply -f ingress.yaml
 
-Practical examples
+Examples
 
-- Configure an Ingress to route HTTP traffic to multiple services
+- Configure an Ingress rule to route /api to service-a and /web to service-b.
 
-Common interview questions
+Interview questions
 
-- How does service discovery work in Kubernetes?
+- How does a Service discover backend pods?
+- When would you use NetworkPolicy?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Verify service endpoints and pod labels
-- Check ingress controller logs
+- "Ingress 404": check ingress rules, service selectors, and ingress controller logs.
+- "Cross-namespace communication failing": inspect NetworkPolicies and service references.
 
+Related topics
+
+- Kubernetes basics: ../kubernetes/kubernetes-basics.md
+- Cloud load balancers: ../networking/dns-load-balancing.md

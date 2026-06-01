@@ -1,33 +1,35 @@
-# AWS Serverless
+# AWS Serverless — Concise Notes
 
-What it is
+Summary
 
-Serverless refers to services like AWS Lambda, API Gateway, and managed data stores where you don't manage servers directly.
-
-Why it is used
-
-Lower operational overhead and automatic scaling for event-driven workloads.
+Serverless services like Lambda and API Gateway let you run code without managing servers; good for event-driven workloads.
 
 Key concepts
 
-- Lambda functions and event sources
-- API Gateway + Lambda patterns
-- Cold starts and concurrency
+- Lambda function model: handler, runtime, IAM execution role.
+- Triggers: S3 events, API Gateway, SNS, SQS.
+- Cold starts and ways to mitigate (provisioned concurrency).
 
 Commands
 
 - aws lambda list-functions
+- aws logs tail /aws/lambda/<fn-name> --follow
 
-Practical examples
+Examples
 
-- Create a Lambda to process S3 uploads and log events
+- S3 -> Lambda: process file uploads and write metadata to DynamoDB.
 
-Common interview questions
+Interview questions
 
-- What are cold starts and how to mitigate them?
+- What causes cold starts and how to reduce them?
+- How do you secure an API Gateway-backed Lambda?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Review CloudWatch logs for function errors
-- Check IAM role permissions for the function
+- "Function error": inspect CloudWatch logs and check IAM role permissions.
+- "Timeouts": increase function timeout or optimize code and dependencies.
 
+Related topics
+
+- IAM roles & policies: ../aws/aws-core-services.md
+- CI/CD for serverless: ../cicd/pipelines-iac.md

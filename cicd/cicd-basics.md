@@ -1,33 +1,35 @@
-# CI/CD Basics
+# CI/CD Basics — Concise Notes
 
-What it is
+Summary
 
-CI/CD automates building, testing, and deploying code changes to deliver faster and more reliable releases.
-
-Why it is used
-
-To reduce manual work, catch regressions early, and standardize deployments.
+CI/CD automates building, testing, and deploying applications to deliver changes safely and frequently.
 
 Key concepts
 
-- CI (build & test) vs CD (deploy)
-- Pipelines, jobs, runners/agents
-- Artifacts and environment promotion
+- CI: automated builds and tests on commit.
+- CD: automated or gated deployments to environments.
+- Environments, artifacts, secrets, and approvals.
 
 Commands / Tools
 
-- GitHub Actions, GitLab CI, Jenkins, CircleCI
+- GitHub Actions: `.github/workflows/*.yml`
+- Common steps: checkout, setup runtime, install dependencies, run tests, build/push image.
 
-Practical examples
+Examples
 
-- Simple GitHub Actions workflow to run tests and build an image
+- Simple GitHub Actions workflow: checkout, run tests, build Docker image (see projects/cicd-pipeline).
 
-Common interview questions
+Interview questions
 
-- What is blue-green deployment? Canary release?
+- Compare blue-green vs canary deployments.
+- How would you secure credentials used in pipelines?
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Check pipeline logs and job artifacts
-- Ensure proper access to deploy targets
+- "Pipeline failing": inspect step logs, re-run job, verify environment variables and permissions.
+- "Image not pushed": check registry credentials and CI runner network access.
 
+Related topics
+
+- Pipelines + IaC: ../cicd/pipelines-iac.md
+- GitHub collaboration: ../git-github/github-collaboration.md

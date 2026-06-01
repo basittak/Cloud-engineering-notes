@@ -1,38 +1,37 @@
-# DNS and Load Balancing
+# DNS & Load Balancing — Concise Notes
 
-What it is
+Summary
 
-DNS maps domain names to IP addresses. Load balancers distribute traffic across multiple backend instances to improve availability and scalability.
-
-Why it is used
-
-- DNS provides human-friendly names and failover mechanisms.
-- Load balancers ensure high availability and scale traffic.
+How DNS maps names to addresses and how load balancers distribute traffic to improve availability and scale.
 
 Key concepts
 
-- DNS records: A, AAAA, CNAME, MX, TXT
-- TTL (time to live)
-- Types of load balancers: Layer 4 (TCP) vs Layer 7 (HTTP)
-- Health checks and session affinity
+- DNS record types: A, AAAA, CNAME, TXT, MX; TTL controls caching.
+- Load balancer layers: L4 (TCP) vs L7 (HTTP/HTTPS).
+- Health checks, sticky sessions, target groups.
+- CDN vs Load Balancer: CDN caches content geographically; LB distributes live traffic.
 
 Commands
 
 - dig example.com A
 - nslookup -type=mx example.com
 
-Practical examples
+Examples
 
-- Configure Route53 A record for a load balancer
-- Create an HTTP health check and attach it to a target group
+- Route53: create A record pointing to an ALB.
+- CloudFront + S3: use DNS to map custom domain to CloudFront distribution.
 
-Common interview questions
+Interview questions
 
-- How does DNS caching affect propagation?
-- Explain the difference between ALB and NLB on AWS.
+- When would you use a CNAME vs an A record?
+- Explain differences between an ALB and an NLB (AWS).
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Use dig to verify DNS values and TTLs.
-- Check load balancer health checks and logs for failing targets.
+- "DNS not updated": check TTL, DNS provider console, and `dig` from multiple resolvers.
+- "Unhealthy targets": inspect load balancer health checks and backend logs.
 
+Related topics
+
+- AWS core services: ../aws/aws-core-services.md
+- Kubernetes Ingress: ../kubernetes/k8s-networking.md

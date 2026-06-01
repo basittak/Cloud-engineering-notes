@@ -1,37 +1,37 @@
-# Docker Basics
+# Docker Basics — Concise Notes
 
-What it is
+Summary
 
-Docker is a platform for building, shipping, and running containerized applications.
-
-Why it is used
-
-Containers package apps with dependencies for consistent runtime across environments.
+Container fundamentals: images, containers, Dockerfile patterns, and registries.
 
 Key concepts
 
-- Images vs containers
-- Dockerfile and layers
-- Registries (Docker Hub, ECR)
+- Images (immutable), layers, tags.
+- Containers (runtime instances) and resource limits.
+- Dockerfile best practices: small base images, caching, multi-stage builds.
 
 Commands
 
 - docker build -t myapp:latest .
 - docker run -p 8080:80 myapp:latest
-- docker images
 - docker ps -a
+- docker logs <container>
 
-Practical examples
+Examples
 
-- Dockerize a simple Python Flask app
+- Build and run a Flask app (see projects/dockerized-application).
 
-Common interview questions
+Interview questions
 
-- Explain how Docker images are layered.
-- Differences between containers and virtual machines.
+- How do image layers affect build performance?
+- Differences between containers and VMs.
 
-Troubleshooting notes
+Troubleshooting scenarios
 
-- Check container logs: `docker logs <container>`
-- Use `docker inspect` to debug networking and mounts
+- "Container exits immediately": check `docker logs` and `docker inspect` for entrypoint issues.
+- "Port not accessible": verify port mapping and host firewall.
 
+Related topics
+
+- Kubernetes deployment: ../kubernetes/kubernetes-basics.md
+- Docker Compose: ../docker/docker-compose.md
